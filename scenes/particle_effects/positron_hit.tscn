@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://lerqmvbo8x0h"]
+
+[ext_resource type="Texture2D" uid="uid://df1f0fpqf6f6a" path="res://assets/positron.png" id="1_s3p6v"]
+[ext_resource type="Script" uid="uid://blyvhvlwt8nrq" path="res://scenes/particle_effects/positron_hit.gd" id="2_01ccw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_01ccw"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("1_s3p6v")
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_xfs1y"]
+material = SubResource("StandardMaterial3D_01ccw")
+size = Vector2(0.3, 0.3)
+orientation = 2
+
+[sub_resource type="Curve" id="Curve_s3p6v"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.10106383, 1), -2.9445782, -2.9445782, 0, 0, Vector2(1, 0), -0.31459183, 0.0, 0, 0]
+point_count = 3
+
+[node name="PositronHit" type="CPUParticles3D"]
+amount = 500
+mesh = SubResource("PlaneMesh_xfs1y")
+spread = 180.0
+initial_velocity_max = 20.0
+scale_amount_min = 0.2
+scale_amount_curve = SubResource("Curve_s3p6v")
+script = ExtResource("2_01ccw")

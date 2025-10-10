@@ -56,7 +56,7 @@ func _physics_process(delta: float) -> void:
 	# shooting mechanic
 	if Input.is_action_pressed("left_mb"):
 		if shoot_timeout <= 0:
-			shoot_timeout = 0.1
+			shoot_timeout = 0.04
 			var positron_projectile = load("res://scenes/positron.tscn").instantiate()
 			positron_projectile.position = position
 			get_parent().add_child(positron_projectile)
