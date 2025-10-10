@@ -4,13 +4,13 @@ extends CharacterBody3D
 @export var initial_velocity : float
 @export var bullets_spawning_range : float
 # alleen voor schonere code
-var player = information.player
+var player = GlobalData.player_instance
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$Sprite3D.scale = Vector3(1, 1, 1) * randf_range(0.1, 0.5)
-	global_position = player.get_node("Bullet_origin").global_position + Vector3(randf_range(-bullets_spawning_range, bullets_spawning_range), randf_range(-bullets_spawning_range, bullets_spawning_range), randf_range(-bullets_spawning_range, bullets_spawning_range)) 
+	global_position = player.get_node("BulletOrigin").global_position + Vector3(randf_range(-bullets_spawning_range, bullets_spawning_range), randf_range(-bullets_spawning_range, bullets_spawning_range), randf_range(-bullets_spawning_range, bullets_spawning_range)) 
 	velocity = -player.camera.global_transform.basis.z * initial_velocity
 	await get_tree().create_timer(3).timeout
 	queue_free()

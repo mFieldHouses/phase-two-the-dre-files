@@ -43,6 +43,7 @@ script = ExtResource("1_ha2ph")
 
 [node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.30112934, -0.1820674)
+current = true
 fov = 80.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
@@ -53,7 +54,7 @@ mesh = SubResource("CylinderMesh_ha2ph")
 
 [node name="Positronhitray" type="RayCast3D" parent="CharacterBody3D"]
 
-[node name="Bullet_origin" type="Node3D" parent="CharacterBody3D"]
+[node name="BulletOrigin" type="Node3D" parent="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5714245, -0.18520963, -0.42741776)
 
 [node name="main" parent="." instance=ExtResource("2_ha2ph")]
