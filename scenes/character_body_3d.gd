@@ -58,11 +58,15 @@ func _physics_process(delta: float) -> void:
 		if shoot_timeout <= 0:
 			shoot_timeout = 0.04
 			var positron_projectile = load("res://scenes/positron.tscn").instantiate()
-			positron_projectile.get_node("hit_detect").monitoring = false
-			positron_projectile.global_position = global_position
 			get_parent().add_child(positron_projectile)
+			positron_projectile.global_position = global_position
+			
+			positron_projectile.get_node("hit_detect").monitoring = false
+			positron_projectile.get_node("player_detect").body_exited.connect(func(_x): positron_projectile.get_node("hit_detect").monitoring = true) #ook als hij binnen de timeout al buiten de player komt en de vloer raakt
 			await get_tree().create_timer(0.08).timeout #kleine delay om zeker te weten dat ie uit de buurt van de player is
-			positron_projectile.get_node("hit_detect").monitoring = true
+			if positron_projectile:
+				positron_projectile.get_node("hit_detect").monitoring = true
+			
 		else:
 			shoot_timeout -= delta
 		

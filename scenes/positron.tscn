@@ -16,7 +16,13 @@ bullets_spawning_range = 0.5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hit_detect"]
 shape = SubResource("BoxShape3D_6cq4x")
-debug_color = Color(0.9371259, 0.2505331, 0, 1)
+
+[node name="player_detect" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="player_detect"]
+shape = SubResource("BoxShape3D_6cq4x")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 visibility_range_begin = 2.0
