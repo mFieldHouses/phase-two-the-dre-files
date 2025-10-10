@@ -41,7 +41,7 @@ _subresources={
 "materials": {
 "debug": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://assets/no_culling.tres",
+"use_external/fallback_path": "res://assets/debug_grey.tres",
 "use_external/path": "uid://bqkwniqp34rau"
 }
 }

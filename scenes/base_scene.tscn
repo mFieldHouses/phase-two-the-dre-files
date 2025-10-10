@@ -23,6 +23,8 @@ radiance_size = 2
 [sub_resource type="Environment" id="Environment_pmxr0"]
 background_mode = 2
 sky = SubResource("Sky_osw8o")
+ambient_light_color = Color(0.98, 0.98, 0.98, 1)
+ambient_light_energy = 0.3
 
 [node name="Node3D" type="Node3D"]
 
