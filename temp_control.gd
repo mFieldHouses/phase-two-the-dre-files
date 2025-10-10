@@ -14,5 +14,5 @@ func flash():
 		await get_tree().create_timer(random_number.randf_range(0.01, 0.3)).timeout
 		$Sprite2D.self_modulate = Color(0.2, 0.2, 0.2, 1)
 		await get_tree().create_timer(random_number.randf_range(0.01, 0.3)).timeout
-	await get_tree().create_timer(random_number.randf_range(0.5, 4)).timeout
+	await get_tree().create_timer(random_number.randf_range(0.1, 4)).timeout
 	flash()

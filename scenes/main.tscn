@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://btahjfqrgbbm7"]
+
+[ext_resource type="PackedScene" uid="uid://ib6kx0sdr6ui" path="res://assets/jvo.gltf" id="1_o5qli"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_o5qli"]
+radius = 0.35
+
+[node name="main" type="Node3D"]
+
+[node name="jvo" parent="." instance=ExtResource("1_o5qli")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -26)
+mesh = SubResource("CapsuleMesh_o5qli")
