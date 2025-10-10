@@ -1,0 +1,55 @@
+[gd_scene load_steps=10 format=3 uid="uid://dcax40702eh16"]
+
+[ext_resource type="Texture2D" uid="uid://b4lbp8gysjntr" path="res://steveolenski-2197064075.jpg" id="1_gf1bn"]
+[ext_resource type="Script" uid="uid://ba5jmmlk01dbe" path="res://scenes/character_body_3d.gd" id="1_ha2ph"]
+[ext_resource type="PackedScene" uid="uid://btahjfqrgbbm7" path="res://scenes/main.tscn" id="2_ha2ph"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qcxwf"]
+size = Vector3(53.157074, 1.3828125, 18.334534)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_osw8o"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ha2ph"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ha2ph"]
+
+[sub_resource type="Sky" id="Sky_osw8o"]
+sky_material = SubResource("ProceduralSkyMaterial_ha2ph")
+radiance_size = 2
+
+[sub_resource type="Environment" id="Environment_pmxr0"]
+background_mode = 2
+sky = SubResource("Sky_osw8o")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.485733, -2.2123222, -0.921051)
+shape = SubResource("BoxShape3D_qcxwf")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.88464487, -4.7923985)
+script = ExtResource("1_ha2ph")
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.30112934, -0.97162724)
+fov = 80.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09215307, -0.19244576)
+shape = SubResource("CapsuleShape3D_osw8o")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
+mesh = SubResource("CylinderMesh_ha2ph")
+
+[node name="main" parent="." instance=ExtResource("2_ha2ph")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.122135, -2.3922424, -56.268677)
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.02792158, 0, -0.9996101, 0, 1, 0, 0.9996101, 0, 0.02792158, 7.595952, 6.1620474, 1.0389555)
+texture = ExtResource("1_gf1bn")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_pmxr0")
