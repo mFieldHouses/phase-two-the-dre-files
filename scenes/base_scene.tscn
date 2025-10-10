@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://deh5bo4gy3xt8"]
+[gd_scene load_steps=11 format=3 uid="uid://deh5bo4gy3xt8"]
 
 [ext_resource type="Texture2D" uid="uid://b4lbp8gysjntr" path="res://steveolenski-2197064075.jpg" id="1_gf1bn"]
 [ext_resource type="Script" uid="uid://ba5jmmlk01dbe" path="res://scenes/character_body_3d.gd" id="1_ha2ph"]
@@ -26,10 +26,11 @@ sky = SubResource("Sky_osw8o")
 ambient_light_color = Color(0.98, 0.98, 0.98, 1)
 ambient_light_energy = 0.3
 
+[sub_resource type="TorusMesh" id="TorusMesh_ha2ph"]
+
 [node name="Node3D" type="Node3D"]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
-visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.485733, -2.2123222, -0.921051)
@@ -37,6 +38,7 @@ shape = SubResource("BoxShape3D_qcxwf")
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.832565, -0.88464487, -60.73024)
+collision_layer = 2
 script = ExtResource("1_ha2ph")
 
 [node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
@@ -49,11 +51,16 @@ shape = SubResource("CapsuleShape3D_osw8o")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
 mesh = SubResource("CylinderMesh_ha2ph")
 
+[node name="Positronhitray" type="RayCast3D" parent="CharacterBody3D"]
+
+[node name="Bullet_origin" type="Node3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.74044037, 0.4095192, 1.4810371)
+
 [node name="main" parent="." instance=ExtResource("2_ha2ph")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.122135, -2.3922424, -56.268677)
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(0.02792158, 0, -0.9996101, 0, 1, 0, 0.9996101, 0, 0.02792158, 7.595952, 6.1620474, 1.0389555)
+transform = Transform3D(0.9999905, 0, 0.0043632835, 0, 1, 0, -0.0043632835, 0, 0.9999905, 70.280365, -1.7282529, -87.60371)
 texture = ExtResource("1_gf1bn")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -61,4 +68,12 @@ environment = SubResource("Environment_pmxr0")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.61662376, 0.78725797, 0, -0.78725797, -0.61662376, 1389.6986, -1123.687, -3.8146973e-06)
+light_color = Color(1, 0, 0, 1)
 shadow_enabled = true
+
+[node name="Spawnpoint_player" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.107998, -1.7037811, -62.32757)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Spawnpoint_player"]
+mesh = SubResource("TorusMesh_ha2ph")

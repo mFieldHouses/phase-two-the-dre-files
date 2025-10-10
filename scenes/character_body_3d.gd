@@ -21,11 +21,19 @@ var desired_camera_rotation_y : float = 0
 var previous_camera_rotation_x : float = 0
 var previous_camera_rotation_y : float = 0
 
+
+
+
+
+
+
+var shoot_timeout := 0
 @onready var camera : Camera3D = $Camera3D
 
 func _ready():
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_CAPTURED)
-	
+	information.player = self
+	global_position = %Spawnpoint_player.global_position
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
@@ -50,7 +58,23 @@ func _physics_process(delta: float) -> void:
 	
 	previous_camera_rotation_x = camera.rotation.x
 	previous_camera_rotation_y = rotation.y
+	
+	# shooting mechanic
+	if Input.is_action_pressed("left_mb"):
+		if shoot_timeout <= 0:
+			shoot_timeout = 0.05
+			var positron_projectile = load("res://scenes/positron.tscn").instantiate()
+			positron_projectile.position = position
+			get_parent().add_child(positron_projectile)
+		else:
+			shoot_timeout -= delta
+		
+		# ik heb zoveel mogelijk code in de positron zelf gezet zodat het gemakkelijker te vinden en aan te passen is
+	
 	move_and_slide()
+
+
+
 func _input(event):
 	if event is InputEventMouseMotion:
 		desired_camera_rotation_x += event.relative.y / -2000*PI
