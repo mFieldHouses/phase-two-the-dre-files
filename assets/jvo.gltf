@@ -8,35 +8,61 @@
 		{
 			"name":"Scene",
 			"nodes":[
-				1
+				0,
+				1,
+				2,
+				3
 			]
 		}
 	],
 	"nodes":[
 		{
-			"mesh":0,
-			"name":"deuren",
+			"name":"Empty",
+			"scale":[
+				95.83094024658203,
+				95.83094024658203,
+				95.83094024658203
+			],
 			"translation":[
-				0.6110864877700806,
-				0.4846700131893158,
-				-3.1010217666625977
+				-81.7718505859375,
+				0,
+				-9.109861373901367
 			]
 		},
 		{
-			"children":[
-				0
-			],
-			"mesh":1,
-			"name":"Plane.001 -col",
+			"mesh":0,
+			"name":"basis -col",
 			"scale":[
 				8.624539375305176,
 				8.624539375305176,
 				8.624539375305176
 			],
 			"translation":[
-				-6.672119140625,
-				0,
-				-0.3460440933704376
+				-1.4017791748046875,
+				4.180055618286133,
+				-27.09092903137207
+			]
+		},
+		{
+			"mesh":1,
+			"name":"muurtjes_aula -col",
+			"scale":[
+				8.624539375305176,
+				8.624539375305176,
+				8.624539375305176
+			],
+			"translation":[
+				-1.4017791748046875,
+				4.180055618286133,
+				-27.09092903137207
+			]
+		},
+		{
+			"name":"Empty.001",
+			"translation":[
+				-3.916651964187622,
+				4.65230131149292,
+				0
 			]
 		}
 	],
@@ -72,7 +98,7 @@
 			]
 		},
 		{
-			"name":"Plane.002",
+			"name":"Plane.004",
 			"primitives":[
 				{
 					"attributes":{
@@ -90,125 +116,125 @@
 		{
 			"bufferView":0,
 			"componentType":5126,
-			"count":18,
+			"count":443,
 			"max":[
-				0.6947727203369141,
+				8.299891471862793,
 				0.3667539358139038,
-				4.76837158203125e-07
+				10.480452537536621
 			],
 			"min":[
-				-0.6947708129882812,
-				-0.5010088682174683,
-				4.76837158203125e-07
+				-9.914619445800781,
+				-1.316830039024353,
+				-2.6871554851531982
 			],
 			"type":"VEC3"
 		},
 		{
 			"bufferView":1,
 			"componentType":5126,
-			"count":18,
+			"count":443,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":2,
 			"componentType":5126,
-			"count":18,
+			"count":443,
 			"type":"VEC2"
 		},
 		{
 			"bufferView":3,
 			"componentType":5123,
-			"count":48,
+			"count":1347,
 			"type":"SCALAR"
 		},
 		{
 			"bufferView":4,
 			"componentType":5126,
-			"count":174,
+			"count":86,
 			"max":[
-				8.910977363586426,
-				0.8514239192008972,
-				7.379429340362549
+				2.4033594131469727,
+				0.08845594525337219,
+				3.2754709720611572
 			],
 			"min":[
-				-9.303531646728516,
-				-0.016338879242539406,
-				-5.788177013397217
+				-0.29048293828964233,
+				-0.501008927822113,
+				1.7844549417495728
 			],
 			"type":"VEC3"
 		},
 		{
 			"bufferView":5,
 			"componentType":5126,
-			"count":174,
+			"count":86,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":6,
 			"componentType":5126,
-			"count":174,
+			"count":86,
 			"type":"VEC2"
 		},
 		{
 			"bufferView":7,
 			"componentType":5123,
-			"count":594,
+			"count":138,
 			"type":"SCALAR"
 		}
 	],
 	"bufferViews":[
 		{
 			"buffer":0,
-			"byteLength":216,
+			"byteLength":5316,
 			"byteOffset":0,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":216,
-			"byteOffset":216,
+			"byteLength":5316,
+			"byteOffset":5316,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":144,
-			"byteOffset":432,
+			"byteLength":3544,
+			"byteOffset":10632,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":96,
-			"byteOffset":576,
+			"byteLength":2694,
+			"byteOffset":14176,
 			"target":34963
 		},
 		{
 			"buffer":0,
-			"byteLength":2088,
-			"byteOffset":672,
+			"byteLength":1032,
+			"byteOffset":16872,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":2088,
-			"byteOffset":2760,
+			"byteLength":1032,
+			"byteOffset":17904,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":1392,
-			"byteOffset":4848,
+			"byteLength":688,
+			"byteOffset":18936,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":1188,
-			"byteOffset":6240,
+			"byteLength":276,
+			"byteOffset":19624,
 			"target":34963
 		}
 	],
 	"buffers":[
 		{
-			"byteLength":7428,
+			"byteLength":19900,
 			"uri":"jvo.bin"
 		}
 	]

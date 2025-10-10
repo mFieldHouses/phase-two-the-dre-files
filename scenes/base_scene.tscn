@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dcax40702eh16"]
+[gd_scene load_steps=10 format=3 uid="uid://deh5bo4gy3xt8"]
 
 [ext_resource type="Texture2D" uid="uid://b4lbp8gysjntr" path="res://steveolenski-2197064075.jpg" id="1_gf1bn"]
 [ext_resource type="Script" uid="uid://ba5jmmlk01dbe" path="res://scenes/character_body_3d.gd" id="1_ha2ph"]
@@ -10,6 +10,9 @@ size = Vector3(53.157074, 1.3828125, 18.334534)
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_osw8o"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_ha2ph"]
+top_radius = 0.35
+bottom_radius = 0.45
+height = 1.8
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ha2ph"]
 
@@ -24,21 +27,21 @@ sky = SubResource("Sky_osw8o")
 [node name="Node3D" type="Node3D"]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
+visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.485733, -2.2123222, -0.921051)
 shape = SubResource("BoxShape3D_qcxwf")
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.88464487, -4.7923985)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.832565, -0.88464487, -60.73024)
 script = ExtResource("1_ha2ph")
 
 [node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.30112934, -0.97162724)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.30112934, -0.1820674)
 fov = 80.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09215307, -0.19244576)
 shape = SubResource("CapsuleShape3D_osw8o")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]

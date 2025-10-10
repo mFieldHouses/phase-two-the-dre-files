@@ -43,8 +43,8 @@ func _physics_process(delta: float) -> void:
 		velocity.x *= 0.8
 		velocity.z *= 0.8
 	
-	camera.rotation.x = lerp(previous_camera_rotation_x, desired_camera_rotation_x, 0.5)
-	rotation.y = lerp(previous_camera_rotation_y, desired_camera_rotation_y, 0.5)
+	camera.rotation.x = lerp(previous_camera_rotation_x, desired_camera_rotation_x, 0.3)
+	rotation.y = lerp(previous_camera_rotation_y, desired_camera_rotation_y, 0.3)
 	
 	desired_camera_rotation_x = clamp(desired_camera_rotation_x, -0.5 * PI, 0.5 * PI)
 	
