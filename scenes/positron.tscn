@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://ce7w0wjd860q6"]
 
-[ext_resource type="Script" path="res://node_3d.gd" id="1_uk47x"]
+[ext_resource type="Script" uid="uid://bk5r4hynskv2u" path="res://node_3d.gd" id="1_uk47x"]
 [ext_resource type="Texture2D" uid="uid://df1f0fpqf6f6a" path="res://assets/positron.png" id="2_6cq4x"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6cq4x"]

@@ -54,7 +54,7 @@ mesh = SubResource("CylinderMesh_ha2ph")
 [node name="Positronhitray" type="RayCast3D" parent="CharacterBody3D"]
 
 [node name="Bullet_origin" type="Node3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.74044037, 0.4095192, 1.4810371)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5714245, -0.18520963, -0.42741776)
 
 [node name="main" parent="." instance=ExtResource("2_ha2ph")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.122135, -2.3922424, -56.268677)

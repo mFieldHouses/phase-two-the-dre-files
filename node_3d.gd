@@ -15,7 +15,8 @@ func _ready() -> void:
 	await get_tree().create_timer(3).timeout
 	queue_free()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
+	velocity.y -= 9.81 * delta
 	move_and_slide()
 
 func _on_area_3d_body_entered(_body: Node3D) -> void:
