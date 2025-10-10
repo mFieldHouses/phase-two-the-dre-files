@@ -23,7 +23,8 @@ func _process(delta: float) -> void:
 func _on_area_3d_body_entered(_body: Node3D) -> void:
 	queue_free()
 
-func _bullet_hit(_bodyaw):
+func _bullet_hit(_body):
+	print(_body, _body.name, _body.get_parent().name)
 	ParticleEffectManager.positron_hit(global_position, player.get_parent())
 	queue_free()
 	

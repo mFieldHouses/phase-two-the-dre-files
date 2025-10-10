@@ -5,10 +5,14 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_01ccw"]
 transparency = 1
+no_depth_test = true
 shading_mode = 0
 albedo_texture = ExtResource("1_s3p6v")
-billboard_mode = 1
+billboard_mode = 3
 billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_xfs1y"]
 material = SubResource("StandardMaterial3D_01ccw")
@@ -20,10 +24,17 @@ _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.10106383, 1), -2.9445782, -2.9
 point_count = 3
 
 [node name="PositronHit" type="CPUParticles3D"]
+visibility_range_end = 50.0
+visibility_range_end_margin = 10.0
+visibility_range_fade_mode = 1
 amount = 500
+lifetime = 0.4
 mesh = SubResource("PlaneMesh_xfs1y")
 spread = 180.0
-initial_velocity_max = 20.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_max = 30.0
+damping_min = 70.0
+damping_max = 100.0
 scale_amount_min = 0.2
 scale_amount_curve = SubResource("Curve_s3p6v")
 script = ExtResource("2_01ccw")

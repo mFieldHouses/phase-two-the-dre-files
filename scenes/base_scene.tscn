@@ -30,31 +30,32 @@ ambient_light_energy = 0.3
 
 [node name="Node3D" type="Node3D"]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="ground" type="StaticBody3D" parent="."]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ground"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.485733, -2.2123222, -0.921051)
 shape = SubResource("BoxShape3D_qcxwf")
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+[node name="player" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.832565, -0.88464487, -60.73024)
 collision_layer = 2
 script = ExtResource("1_ha2ph")
 
-[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
+[node name="Camera3D" type="Camera3D" parent="player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.30112934, -0.1820674)
 current = true
 fov = 80.0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="player"]
 shape = SubResource("CapsuleShape3D_osw8o")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="player"]
 mesh = SubResource("CylinderMesh_ha2ph")
 
-[node name="Positronhitray" type="RayCast3D" parent="CharacterBody3D"]
+[node name="Positronhitray" type="RayCast3D" parent="player"]
+collision_mask = 2
 
-[node name="BulletOrigin" type="Node3D" parent="CharacterBody3D"]
+[node name="BulletOrigin" type="Node3D" parent="player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5714245, -0.18520963, -0.42741776)
 
 [node name="main" parent="." instance=ExtResource("2_ha2ph")]
