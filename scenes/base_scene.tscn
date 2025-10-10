@@ -56,3 +56,7 @@ texture = ExtResource("1_gf1bn")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_pmxr0")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.61662376, 0.78725797, 0, -0.78725797, -0.61662376, 1389.6986, -1123.687, -3.8146973e-06)
+shadow_enabled = true
