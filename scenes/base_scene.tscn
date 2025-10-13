@@ -85,7 +85,7 @@ mesh = SubResource("TorusMesh_ha2ph")
 [node name="Enemies" type="Node3D" parent="."]
 
 [node name="Practice_target" parent="Enemies" instance=ExtResource("4_osw8o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.250565, -1.4032102, -69.4126)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.68154, -1.4032102, -69.4126)
 
 [node name="Practice_target2" parent="Enemies" instance=ExtResource("4_osw8o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.66861, -1.2736354, -73.124855)

@@ -84,7 +84,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("switch_camera"):
 		if camera_position == 0:
 			camera_position = 1
-			camera.position = Vector3(0.5, 0.8, 1.2)
+			camera.position = Vector3(0.5, 1, 1.2)
 		else:
 			camera_position = 0
 			camera.position = Vector3(0, 0.6, -0.4)
