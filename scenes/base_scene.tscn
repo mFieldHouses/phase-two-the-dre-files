@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://b4lbp8gysjntr" path="res://steveolenski-2197064075.jpg" id="1_gf1bn"]
 [ext_resource type="Script" uid="uid://ba5jmmlk01dbe" path="res://scenes/character_body_3d.gd" id="1_ha2ph"]
 [ext_resource type="PackedScene" uid="uid://btahjfqrgbbm7" path="res://scenes/main.tscn" id="2_ha2ph"]
-[ext_resource type="PackedScene" uid="uid://cm7cfedd4qe2x" path="res://practice_target.tscn" id="4_osw8o"]
+[ext_resource type="PackedScene" uid="uid://cm7cfedd4qe2x" path="res://scenes/practice_target.tscn" id="4_osw8o"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qcxwf"]
 size = Vector3(53.157074, 1.3828125, 18.334534)
