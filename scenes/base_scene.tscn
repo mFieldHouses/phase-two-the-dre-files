@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://deh5bo4gy3xt8"]
+[gd_scene load_steps=12 format=3 uid="uid://deh5bo4gy3xt8"]
 
 [ext_resource type="Texture2D" uid="uid://b4lbp8gysjntr" path="res://steveolenski-2197064075.jpg" id="1_gf1bn"]
 [ext_resource type="Script" uid="uid://ba5jmmlk01dbe" path="res://scenes/character_body_3d.gd" id="1_ha2ph"]
 [ext_resource type="PackedScene" uid="uid://btahjfqrgbbm7" path="res://scenes/main.tscn" id="2_ha2ph"]
+[ext_resource type="PackedScene" uid="uid://cm7cfedd4qe2x" path="res://practice_target.tscn" id="4_osw8o"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qcxwf"]
 size = Vector3(53.157074, 1.3828125, 18.334534)
@@ -42,7 +43,7 @@ collision_layer = 2
 script = ExtResource("1_ha2ph")
 
 [node name="Camera3D" type="Camera3D" parent="player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.30112934, -0.1820674)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -0.4)
 current = true
 fov = 80.0
 
@@ -53,7 +54,9 @@ shape = SubResource("CapsuleShape3D_osw8o")
 mesh = SubResource("CylinderMesh_ha2ph")
 
 [node name="Positronhitray" type="RayCast3D" parent="player"]
-collision_mask = 2
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -0.4)
+target_position = Vector3(0, 0, -100)
+collision_mask = 4
 
 [node name="BulletOrigin" type="Node3D" parent="player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5714245, -0.18520963, -0.42741776)
@@ -70,7 +73,6 @@ environment = SubResource("Environment_pmxr0")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.61662376, 0.78725797, 0, -0.78725797, -0.61662376, 1389.6986, -1123.687, -3.8146973e-06)
-light_color = Color(1, 0, 0, 1)
 shadow_enabled = true
 
 [node name="Spawnpoint_player" type="Node3D" parent="."]
@@ -79,3 +81,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.107998, -1.7037811, -62.32
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Spawnpoint_player"]
 mesh = SubResource("TorusMesh_ha2ph")
+
+[node name="Enemies" type="Node3D" parent="."]
+
+[node name="Practice_target" parent="Enemies" instance=ExtResource("4_osw8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.250565, -1.4032102, -69.4126)
+
+[node name="Practice_target2" parent="Enemies" instance=ExtResource("4_osw8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.66861, -1.2736354, -73.124855)
+
+[node name="Practice_target3" parent="Enemies" instance=ExtResource("4_osw8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.608833, -2.3450973, -66.356064)

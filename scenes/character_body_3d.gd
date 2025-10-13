@@ -24,6 +24,7 @@ var previous_camera_rotation_y : float = 0
 var shoot_timeout : float = 0
 @onready var camera : Camera3D = $Camera3D
 
+var camera_position := 0
 func _ready():
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_CAPTURED)
 	GlobalData.player_instance = self
@@ -56,7 +57,14 @@ func _physics_process(delta: float) -> void:
 	# shooting mechanic
 	if Input.is_action_pressed("left_mb"):
 		if shoot_timeout <= 0:
-			shoot_timeout = 0.04
+			if $Positronhitray.is_colliding():
+				$Positronhitray.get_collider().hp -= 5
+				$Positronhitray.get_collider().get_node("MeshInstance3D").mesh.material.albedo_color += Color(0.1, 0, 0, 0)
+				if $Positronhitray.get_collider().hp <= 0:
+					$Positronhitray.get_collider().freeze = false
+					$Positronhitray.get_collider().linear_velocity = $Positronhitray.global_transform.basis.z * -5 + Vector3(0, 10, 0)
+					
+			shoot_timeout = 0.05
 			var positron_projectile = load("res://scenes/positron.tscn").instantiate()
 			get_parent().add_child(positron_projectile)
 			positron_projectile.global_position = global_position
@@ -72,6 +80,18 @@ func _physics_process(delta: float) -> void:
 		
 		# ik heb zoveel mogelijk code in de positron zelf gezet zodat het gemakkelijker te vinden en aan te passen is
 	
+	# positie camera veranderen
+	if Input.is_action_just_pressed("switch_camera"):
+		if camera_position == 0:
+			camera_position = 1
+			camera.position = Vector3(0.5, 0.8, 1.2)
+		else:
+			camera_position = 0
+			camera.position = Vector3(0, 0.6, -0.4)
+			
+	
+	$Positronhitray.rotation.x = camera.rotation.x
+
 	move_and_slide()
 
 
