@@ -58,11 +58,8 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("left_mb"):
 		if shoot_timeout <= 0:
 			if $Positronhitray.is_colliding():
-				$Positronhitray.get_collider().hp -= 5
+				$Positronhitray.get_collider().damage(5, 1)
 				$Positronhitray.get_collider().get_node("MeshInstance3D").mesh.material.albedo_color += Color(0.1, 0, 0, 0)
-				if $Positronhitray.get_collider().hp <= 0:
-					$Positronhitray.get_collider().freeze = false
-					$Positronhitray.get_collider().linear_velocity = $Positronhitray.global_transform.basis.z * -5 + Vector3(0, 10, 0)
 					
 			shoot_timeout = 0.05
 			var positron_projectile = load("res://scenes/positron.tscn").instantiate()

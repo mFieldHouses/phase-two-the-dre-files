@@ -1,18 +1,18 @@
 [gd_scene load_steps=5 format=3 uid="uid://cm7cfedd4qe2x"]
 
-[ext_resource type="Script" uid="uid://b018uduvhc1rl" path="res://Practice_target.gd" id="1_k1bei"]
+[ext_resource type="Script" uid="uid://b018uduvhc1rl" path="res://practice_target.gd" id="1_k1bei"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gmwdw"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_k1bei"]
 material = SubResource("StandardMaterial3D_gmwdw")
+height = 4.02
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gmwdw"]
+radius = 0.32714844
 
-[node name="RigidBody3D" type="RigidBody3D"]
+[node name="RigidBody3D" type="CharacterBody3D"]
 collision_layer = 4
-freeze = true
-angular_velocity = Vector3(87.266464, 3.4906585, 0.34906584)
 script = ExtResource("1_k1bei")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -23,3 +23,9 @@ skeleton = NodePath("../..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0993677, 0)
 shape = SubResource("CapsuleShape3D_gmwdw")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+target_desired_distance = 10.0
+debug_enabled = true
+
+[connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
