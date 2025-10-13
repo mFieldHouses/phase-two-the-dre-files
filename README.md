@@ -1,2 +1,1 @@
-GODOT 4.5 STABLE
- testotron 3000
+GODOT 4.5.0 STABLE
