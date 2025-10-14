@@ -6,6 +6,7 @@ const JUMP_VELOCITY = 4.5
 
 const DEFAULT_FOV = 75
 const SPRINTING_FOV = 100
+const SHOOTING_RAY_FOV_DELTA = 15
 
 var sprinting : bool = false
 
@@ -100,6 +101,10 @@ func _input(event):
 	
 	elif event.is_action("shoot"):
 		shooting = event.is_pressed()
+		if event.is_pressed():
+			tween_camera_fov(camera.fov + SHOOTING_RAY_FOV_DELTA)
+		else:
+			tween_camera_fov(camera.fov - SHOOTING_RAY_FOV_DELTA)
 
 func update_positron_beam() -> void: ##Updates the scale.z and position.z based on the collision point of PositronHitRay and updates the position of Camera3D/PositronHit
 	var _length : float
