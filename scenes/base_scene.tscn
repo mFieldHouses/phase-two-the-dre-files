@@ -19,6 +19,9 @@ size = Vector3(53.157074, 1.3828125, 18.334534)
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_vjnli"]
 seed = 250
 frequency = 0.0348
+fractal_octaves = 2
+fractal_lacunarity = 2.335
+fractal_weighted_strength = 1.0
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_oelfw"]
 noise = SubResource("FastNoiseLite_vjnli")
@@ -46,9 +49,8 @@ shader_parameter/stretch = 1.0
 material = SubResource("ShaderMaterial_e5sna")
 top_radius = 0.125
 bottom_radius = 0.125
-height = 24.807
+height = 0.1
 radial_segments = 10
-rings = 124
 cap_top = false
 cap_bottom = false
 
@@ -90,6 +92,10 @@ background_mode = 2
 sky = SubResource("Sky_osw8o")
 ambient_light_color = Color(0.98, 0.98, 0.98, 1)
 ambient_light_energy = 0.3
+glow_enabled = true
+glow_levels/3 = 4.14
+glow_levels/4 = 1.57
+glow_blend_mode = 1
 
 [sub_resource type="TorusMesh" id="TorusMesh_ha2ph"]
 
@@ -124,7 +130,7 @@ target_position = Vector3(0, 0, -100)
 collision_mask = 5
 
 [node name="PositronBeamMesh" type="MeshInstance3D" parent="player/Camera3D"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, -0.6, -1.7863045)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, -0.6, 0.43463516)
 mesh = SubResource("CylinderMesh_mryrf")
 skeleton = NodePath("../..")
 
@@ -135,10 +141,10 @@ amount = 500
 lifetime = 0.4
 mesh = SubResource("PlaneMesh_xfs1y")
 spread = 180.0
-gravity = Vector3(0, -50, 0)
+initial_velocity_min = 10.0
 initial_velocity_max = 30.0
-damping_min = 70.0
-damping_max = 100.0
+linear_accel_min = -100.0
+linear_accel_max = -100.0
 scale_amount_min = 0.0
 scale_amount_curve = SubResource("Curve_s3p6v")
 
