@@ -23,6 +23,7 @@ var previous_camera_rotation_x : float = 0
 var previous_camera_rotation_y : float = 0
 
 var shoot_timeout : float = 0
+var shooting : bool = false
 @onready var camera : Camera3D = $Camera3D
 
 var camera_position := 0
@@ -55,27 +56,10 @@ func _physics_process(delta: float) -> void:
 	previous_camera_rotation_x = camera.rotation.x
 	previous_camera_rotation_y = rotation.y
 	
-	# shooting mechanic
-	if Input.is_action_pressed("shoot"):
-		if shoot_timeout <= 0:
-			if $Positronhitray.is_colliding():
-				$Positronhitray.get_collider().damage(5, 1)
-					
-			shoot_timeout = 0.05
-			var positron_projectile = preload("res://scenes/positron.tscn").instantiate()
-			get_parent().add_child(positron_projectile)
-			positron_projectile.global_position = global_position
-			
-			positron_projectile.get_node("hit_detect").monitoring = false
-			positron_projectile.get_node("player_detect").body_exited.connect(func(_x): positron_projectile.get_node("hit_detect").monitoring = true) #ook als hij binnen de timeout al buiten de player komt en de vloer raakt
-			await get_tree().create_timer(0.08).timeout #kleine delay om zeker te weten dat ie uit de buurt van de player is
-			if positron_projectile:
-				positron_projectile.get_node("hit_detect").monitoring = true
-			
-		else:
-			shoot_timeout -= delta
-		
-		# ik heb zoveel mogelijk code in de positron zelf gezet zodat het gemakkelijker te vinden en aan te passen is
+	$Camera3D/PositronBeamMesh.visible = shooting
+	$Camera3D/PositronHitParticles.emitting = shooting
+	if shooting:
+		update_positron_beam()
 	
 	# positie camera veranderen
 	if Input.is_action_just_pressed("switch_camera"):
@@ -85,12 +69,8 @@ func _physics_process(delta: float) -> void:
 		else:
 			camera_position = 0
 			camera.position = Vector3(0, 0.6, -0.4)
-			
-	
-	$Positronhitray.rotation.x = camera.rotation.x
 
 	move_and_slide()
-
 
 
 func _input(event):
@@ -105,6 +85,23 @@ func _input(event):
 		else:
 			sprinting = false
 			tween_camera_fov(DEFAULT_FOV)
+	
+	elif event.is_action("shoot"):
+		shooting = event.is_pressed()
+
+func update_positron_beam() -> void: ##Updates the scale.z and position.z based on the collision point of PositronHitRay and updates the position of Camera3D/PositronHit
+	var _length : float
+	if $Camera3D/PositronHitRay.is_colliding():
+		_length = ($Camera3D/PositronHitRay.get_collision_point() - global_position).length()
+	else:
+		_length = 100.0
+	
+	$Camera3D/PositronBeamMesh.mesh.size.z = _length
+	$Camera3D/PositronBeamMesh.position.z = _length / -2.0 #negatieve Z is naar voren
+	$Camera3D/PositronHitParticles.position.z = -_length #particles zijn relatief aan camera dus we hoeven alleen z coordinaat aan te passen
+	
+	
+	
 
 func tween_camera_fov(new_fov : float, tween_time : float = 0.3) -> void:
 	var _tween = create_tween()

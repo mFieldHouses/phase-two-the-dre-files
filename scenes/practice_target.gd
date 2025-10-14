@@ -19,7 +19,6 @@ func _physics_process(delta: float) -> void:
 	velocity += get_gravity() * delta
 	move_and_slide()
 
-
 func idle():
 	velocity = Vector3.ZERO
 	idle_timer_count = idle_wait_time

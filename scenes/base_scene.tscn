@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://deh5bo4gy3xt8"]
+[gd_scene load_steps=19 format=3 uid="uid://deh5bo4gy3xt8"]
 
 [ext_resource type="Texture2D" uid="uid://b4lbp8gysjntr" path="res://steveolenski-2197064075.jpg" id="1_gf1bn"]
 [ext_resource type="Script" uid="uid://ba5jmmlk01dbe" path="res://scenes/character_body_3d.gd" id="1_ha2ph"]
 [ext_resource type="PackedScene" uid="uid://btahjfqrgbbm7" path="res://scenes/main.tscn" id="2_ha2ph"]
+[ext_resource type="Texture2D" uid="uid://df1f0fpqf6f6a" path="res://assets/positron.png" id="3_mryrf"]
 [ext_resource type="Script" uid="uid://c7q2884cr78hx" path="res://scenes/player_ui.gd" id="3_pmxr0"]
 [ext_resource type="PackedScene" uid="uid://cm7cfedd4qe2x" path="res://scenes/practice_target.tscn" id="4_osw8o"]
 
@@ -14,15 +15,35 @@ agent_max_climb = 1.0
 [sub_resource type="BoxShape3D" id="BoxShape3D_qcxwf"]
 size = Vector3(53.157074, 1.3828125, 18.334534)
 
+[sub_resource type="BoxMesh" id="BoxMesh_pmxr0"]
+size = Vector3(0.25, 0.25, 0.25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_01ccw"]
+transparency = 1
+no_depth_test = true
+shading_mode = 0
+albedo_texture = ExtResource("3_mryrf")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_xfs1y"]
+material = SubResource("StandardMaterial3D_01ccw")
+size = Vector2(0.3, 0.3)
+orientation = 2
+
+[sub_resource type="Curve" id="Curve_s3p6v"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.10106383, 1), -2.9445782, -2.9445782, 0, 0, Vector2(1, 0), -0.31459183, 0.0, 0, 0]
+point_count = 3
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_osw8o"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_ha2ph"]
 top_radius = 0.35
 bottom_radius = 0.45
 height = 1.8
-
-[sub_resource type="BoxMesh" id="BoxMesh_pmxr0"]
-size = Vector3(0.25, 0.25, 0.25)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ha2ph"]
 
@@ -63,16 +84,33 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -0.4)
 current = true
 fov = 80.0
 
+[node name="PositronHitRay" type="RayCast3D" parent="player/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.59750265, 0)
+target_position = Vector3(0, 0, -100)
+collision_mask = 5
+
+[node name="PositronBeamMesh" type="MeshInstance3D" parent="player/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, 0.040966034)
+mesh = SubResource("BoxMesh_pmxr0")
+skeleton = NodePath("../..")
+
+[node name="PositronHitParticles" type="CPUParticles3D" parent="player/Camera3D"]
+amount = 500
+lifetime = 0.4
+mesh = SubResource("PlaneMesh_xfs1y")
+spread = 180.0
+gravity = Vector3(0, -50, 0)
+initial_velocity_max = 30.0
+damping_min = 70.0
+damping_max = 100.0
+scale_amount_min = 0.0
+scale_amount_curve = SubResource("Curve_s3p6v")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="player"]
 shape = SubResource("CapsuleShape3D_osw8o")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="player"]
 mesh = SubResource("CylinderMesh_ha2ph")
-
-[node name="Positronhitray" type="RayCast3D" parent="player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -0.4)
-target_position = Vector3(0, 0, -100)
-collision_mask = 4
 
 [node name="BulletOrigin" type="Node3D" parent="player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5714245, -0.18520963, -0.42741776)
@@ -90,10 +128,6 @@ script = ExtResource("3_pmxr0")
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
-
-[node name="positron_beam" type="MeshInstance3D" parent="player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.3590355)
-mesh = SubResource("BoxMesh_pmxr0")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(0.9999905, 0, 0.0043632835, 0, 1, 0, -0.0043632835, 0, 0.9999905, 70.280365, -1.7282529, -87.60371)
