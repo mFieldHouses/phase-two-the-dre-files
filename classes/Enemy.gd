@@ -7,8 +7,8 @@ var hp : int
 @export var all_points : Array
 var goal_point : Vector3
 
-enum State {IDLE, WAITING_TO_MOVE, MOVE}
-var state : State = State.IDLE
+enum MovementState {IDLE, WAITING_TO_MOVE, MOVE}
+var movement_state : MovementState = MovementState.IDLE
 
 var idle_timer_count : float = 0.0
 var idle_wait_time : float = 0.1
