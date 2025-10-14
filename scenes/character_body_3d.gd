@@ -100,8 +100,6 @@ func update_positron_beam() -> void: ##Updates the scale.z and position.z based 
 	$Camera3D/PositronBeamMesh.position.z = _length / -2.0 #negatieve Z is naar voren
 	$Camera3D/PositronHitParticles.position.z = -_length #particles zijn relatief aan camera dus we hoeven alleen z coordinaat aan te passen
 	
-	
-	
 
 func tween_camera_fov(new_fov : float, tween_time : float = 0.3) -> void:
 	var _tween = create_tween()

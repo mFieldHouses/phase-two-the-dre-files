@@ -95,6 +95,8 @@ mesh = SubResource("BoxMesh_pmxr0")
 skeleton = NodePath("../..")
 
 [node name="PositronHitParticles" type="CPUParticles3D" parent="player/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6059373, 0)
+emitting = false
 amount = 500
 lifetime = 0.4
 mesh = SubResource("PlaneMesh_xfs1y")
