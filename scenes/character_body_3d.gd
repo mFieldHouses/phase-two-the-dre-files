@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
-const SPEED = 6.0
-const SPRINT_SPEED_DELTA = 3.0
+const SPEED = 6.0 #default walking speed
+const SPRINT_SPEED_DELTA = 4.0 #value to be added to SPEED when the player is sprinting
 const JUMP_VELOCITY = 4.5
 
 const DEFAULT_FOV = 75
@@ -55,7 +55,7 @@ func _physics_process(delta: float) -> void:
 	previous_camera_rotation_y = rotation.y
 	
 	# shooting mechanic
-	if Input.is_action_pressed("left_mb"):
+	if Input.is_action_pressed("shoot"):
 		if shoot_timeout <= 0:
 			if $Positronhitray.is_colliding():
 				$Positronhitray.get_collider().damage(5, 1)
