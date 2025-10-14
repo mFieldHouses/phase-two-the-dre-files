@@ -96,31 +96,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.27272, 0, -72.42006)
 
 [node name="Practice_target" parent="Enemies" instance=ExtResource("4_osw8o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.68154, -1.4032102, -66.54756)
-max_hp = 100
 speed = 5
-all_points = [Vector3(0, 0, 0)]
 
 [node name="RigidBody3D" parent="Enemies" instance=ExtResource("4_osw8o")]
-max_hp = 100
-speed = 1
-all_points = []
 
 [node name="RigidBody3D2" parent="Enemies" instance=ExtResource("4_osw8o")]
-max_hp = 100
-speed = 1
-all_points = []
 
 [node name="RigidBody3D3" parent="Enemies" instance=ExtResource("4_osw8o")]
-max_hp = 100
-speed = 1
-all_points = []
 
 [node name="RigidBody3D4" parent="Enemies" instance=ExtResource("4_osw8o")]
-max_hp = 100
-speed = 1
-all_points = []
 
 [node name="RigidBody3D5" parent="Enemies" instance=ExtResource("4_osw8o")]
-max_hp = 100
-speed = 1
-all_points = []
