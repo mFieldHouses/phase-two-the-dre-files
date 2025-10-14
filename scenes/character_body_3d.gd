@@ -61,7 +61,7 @@ func _physics_process(delta: float) -> void:
 				$Positronhitray.get_collider().damage(5, 1)
 					
 			shoot_timeout = 0.05
-			var positron_projectile = load("res://scenes/positron.tscn").instantiate()
+			var positron_projectile = preload("res://scenes/positron.tscn").instantiate()
 			get_parent().add_child(positron_projectile)
 			positron_projectile.global_position = global_position
 			
