@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://deh5bo4gy3xt8"]
+[gd_scene load_steps=14 format=3 uid="uid://deh5bo4gy3xt8"]
 
 [ext_resource type="Texture2D" uid="uid://b4lbp8gysjntr" path="res://steveolenski-2197064075.jpg" id="1_gf1bn"]
 [ext_resource type="Script" uid="uid://ba5jmmlk01dbe" path="res://scenes/character_body_3d.gd" id="1_ha2ph"]
 [ext_resource type="PackedScene" uid="uid://btahjfqrgbbm7" path="res://scenes/main.tscn" id="2_ha2ph"]
+[ext_resource type="Script" uid="uid://c7q2884cr78hx" path="res://scenes/player_ui.gd" id="3_pmxr0"]
 [ext_resource type="PackedScene" uid="uid://cm7cfedd4qe2x" path="res://scenes/practice_target.tscn" id="4_osw8o"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_osw8o"]
@@ -72,6 +73,20 @@ collision_mask = 4
 
 [node name="BulletOrigin" type="Node3D" parent="player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5714245, -0.18520963, -0.42741776)
+
+[node name="UI" type="Control" parent="player"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_pmxr0")
+
+[node name="fps" type="Label" parent="player/UI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(0.9999905, 0, 0.0043632835, 0, 1, 0, -0.0043632835, 0, 0.9999905, 70.280365, -1.7282529, -87.60371)
