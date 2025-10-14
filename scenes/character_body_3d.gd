@@ -31,10 +31,14 @@ func _ready():
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_CAPTURED)
 	GlobalData.player_instance = self
 	global_position = %Spawnpoint_player.global_position
+
 func _physics_process(delta: float) -> void:
+	camera_time += delta
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+		
 	# Handle jump.
 	if Input.is_action_pressed("jump"):
 		if is_on_floor():
@@ -56,10 +60,18 @@ func _physics_process(delta: float) -> void:
 	previous_camera_rotation_x = camera.rotation.x
 	previous_camera_rotation_y = rotation.y
 	
+	
+	#Shooting ==========================================================
+	
 	$Camera3D/PositronBeamMesh.visible = shooting
 	$Camera3D/PositronHitParticles.emitting = shooting
 	if shooting:
 		update_positron_beam()
+	
+	#Camera ================================================================
+	
+	camera.h_offset = sin(camera_time * 80) * float(shooting) * 0.02 * float(GlobalSettings.positron_ray_camera_shake)
+	camera.v_offset = cos(camera_time * 70) * float(shooting) * 0.02 * float(GlobalSettings.positron_ray_camera_shake)
 	
 	# positie camera veranderen
 	if Input.is_action_just_pressed("switch_camera"):
@@ -92,7 +104,7 @@ func _input(event):
 func update_positron_beam() -> void: ##Updates the scale.z and position.z based on the collision point of PositronHitRay and updates the position of Camera3D/PositronHit
 	var _length : float
 	if $Camera3D/PositronHitRay.is_colliding():
-		_length = ($Camera3D/PositronHitRay.get_collision_point() - global_position).length()
+		_length = ($Camera3D/PositronHitRay.get_collision_point() - global_position).length() #gewoon afstand tussen collision point en player
 	else:
 		_length = 100.0
 	
