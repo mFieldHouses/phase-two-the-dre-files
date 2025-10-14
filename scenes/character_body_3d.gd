@@ -5,6 +5,7 @@ const SPRINT_SPEED_DELTA = 4.0 #value to be added to SPEED when the player is sp
 const JUMP_VELOCITY = 4.5
 
 const DEFAULT_FOV = 75
+const SPRINTING_FOV = 100
 
 var sprinting : bool = false
 
@@ -100,5 +101,13 @@ func _input(event):
 	if event.is_action("sprint"):
 		if event.is_pressed():
 			sprinting = true
+			tween_camera_fov(SPRINTING_FOV)
 		else:
 			sprinting = false
+			tween_camera_fov(DEFAULT_FOV)
+
+func tween_camera_fov(new_fov : float, tween_time : float = 0.3) -> void:
+	var _tween = create_tween()
+	_tween.set_trans(Tween.TRANS_CUBIC)
+	_tween.set_ease(Tween.EASE_OUT)
+	_tween.tween_property(camera, "fov", new_fov, tween_time)
