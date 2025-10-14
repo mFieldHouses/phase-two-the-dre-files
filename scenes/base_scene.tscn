@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://deh5bo4gy3xt8"]
+[gd_scene load_steps=25 format=3 uid="uid://deh5bo4gy3xt8"]
 
 [ext_resource type="Texture2D" uid="uid://b4lbp8gysjntr" path="res://steveolenski-2197064075.jpg" id="1_gf1bn"]
 [ext_resource type="Script" uid="uid://ba5jmmlk01dbe" path="res://scenes/character_body_3d.gd" id="1_ha2ph"]
@@ -16,6 +16,14 @@ agent_max_climb = 1.0
 [sub_resource type="BoxShape3D" id="BoxShape3D_qcxwf"]
 size = Vector3(53.157074, 1.3828125, 18.334534)
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_vjnli"]
+seed = 250
+frequency = 0.0348
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_oelfw"]
+noise = SubResource("FastNoiseLite_vjnli")
+seamless = true
+
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_e5sna"]
 fractal_gain = 0.935
 fractal_weighted_strength = 0.76
@@ -29,14 +37,16 @@ render_priority = 0
 shader = ExtResource("3_e5sna")
 shader_parameter/cylinder_length = 7.95
 shader_parameter/noise_tex = SubResource("NoiseTexture2D_vjnli")
+shader_parameter/displacement_noise_tex = SubResource("NoiseTexture2D_oelfw")
 shader_parameter/rotation_speed = 1.0
 shader_parameter/emission_speed = 1.0
-shader_parameter/stretch = 5.675
+shader_parameter/stretch = 1.0
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_mryrf"]
 material = SubResource("ShaderMaterial_e5sna")
 top_radius = 0.125
 bottom_radius = 0.125
+radial_segments = 10
 cap_top = false
 cap_bottom = false
 
