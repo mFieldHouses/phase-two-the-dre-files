@@ -27,3 +27,5 @@ func damage(amount, knockback):
 		velocity = -%player.camera.global_transform.basis.z * knockback
 	if hp <= 0:
 		velocity.y = 10
+	
+	get_node("model").mesh.material.albedo_color += Color(0.1, 0, 0, 0)

@@ -59,7 +59,6 @@ func _physics_process(delta: float) -> void:
 		if shoot_timeout <= 0:
 			if $Positronhitray.is_colliding():
 				$Positronhitray.get_collider().damage(5, 1)
-				$Positronhitray.get_collider().get_node("MeshInstance3D").mesh.material.albedo_color += Color(0.1, 0, 0, 0)
 					
 			shoot_timeout = 0.05
 			var positron_projectile = load("res://scenes/positron.tscn").instantiate()
