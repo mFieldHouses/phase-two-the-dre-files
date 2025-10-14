@@ -13,10 +13,10 @@ uniform float emission_speed = 1.0;
 uniform float stretch = 1.0;
 
 void vertex() {
-	vertex_pos_y = VERTEX.y * cylinder_length;
+	vertex_pos_y = VERTEX.y;
 	
-	VERTEX.x += texture(displacement_noise_tex, vec2(0.0, vertex_pos_y * 0.001 - TIME * 0.2)).r * 0.5 - 0.25;
-	VERTEX.z += texture(displacement_noise_tex, vec2(0.0, vertex_pos_y * 0.001 - TIME * 0.23)).r * 0.5 - 0.25;
+	VERTEX.x += texture(displacement_noise_tex, vec2(0.0, (vertex_pos_y * 0.007 - (TIME * 0.2)))).r * 0.5 - 0.25;
+	VERTEX.z += texture(displacement_noise_tex, vec2(0.0, (vertex_pos_y * 0.007 - (TIME * 0.23)))).r * 0.5 - 0.25;
 	// Called for every vertex the material is visible on.
 }
 
@@ -28,6 +28,7 @@ void fragment() {
 	
 	ALBEDO = vec3(0.0, 1.0 - pow(blue_fac, 0.6), 1.0);
 	ALPHA = (1.0 - blue_fac / 2.0);
+	
 }
 
 //void light() {

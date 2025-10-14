@@ -1,3 +1,3 @@
 extends Node
 
-var positron_ray_camera_shake : bool = true
+var positron_ray_camera_shake : bool = false

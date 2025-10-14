@@ -35,7 +35,7 @@ seamless = true
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e5sna"]
 render_priority = 0
 shader = ExtResource("3_e5sna")
-shader_parameter/cylinder_length = 7.95
+shader_parameter/cylinder_length = 2.0
 shader_parameter/noise_tex = SubResource("NoiseTexture2D_vjnli")
 shader_parameter/displacement_noise_tex = SubResource("NoiseTexture2D_oelfw")
 shader_parameter/rotation_speed = 1.0
@@ -46,7 +46,9 @@ shader_parameter/stretch = 1.0
 material = SubResource("ShaderMaterial_e5sna")
 top_radius = 0.125
 bottom_radius = 0.125
+height = 24.807
 radial_segments = 10
+rings = 124
 cap_top = false
 cap_bottom = false
 
@@ -122,7 +124,7 @@ target_position = Vector3(0, 0, -100)
 collision_mask = 5
 
 [node name="PositronBeamMesh" type="MeshInstance3D" parent="player/Camera3D"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, -0.6, 0.040966034)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, -0.6, -1.7863045)
 mesh = SubResource("CylinderMesh_mryrf")
 skeleton = NodePath("../..")
 

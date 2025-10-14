@@ -114,7 +114,7 @@ func update_positron_beam() -> void: ##Updates the scale.z and position.z based 
 		_length = 100.0
 	
 	$Camera3D/PositronBeamMesh.mesh.height = _length #we gaan er hier van uit dat de mesh een CylinderMesh is
-	$Camera3D/PositronBeamMesh.mesh.rings = ceil(_length)
+	$Camera3D/PositronBeamMesh.mesh.rings = ceil(_length) + 4
 	$Camera3D/PositronBeamMesh.get_active_material(0).set_shader_parameter("cylinder_length", _length)
 	$Camera3D/PositronBeamMesh.position.z = _length / -2.0 #negatieve Z is naar voren
 	$Camera3D/PositronHitParticles.position.z = -_length #particles zijn relatief aan camera dus we hoeven alleen z coordinaat aan te passen
