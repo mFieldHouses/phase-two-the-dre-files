@@ -1,30 +1,25 @@
-[gd_scene load_steps=5 format=3 uid="uid://cm7cfedd4qe2x"]
+[gd_scene load_steps=4 format=3 uid="uid://cm7cfedd4qe2x"]
 
 [ext_resource type="Script" uid="uid://5ydlxo2nf3n3" path="res://scenes/practice_target.gd" id="1_k1bei"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gmwdw"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_k1bei"]
-material = SubResource("StandardMaterial3D_gmwdw")
-height = 4.02
+[ext_resource type="Texture2D" uid="uid://omscjxfeiecn" path="res://assets/textures/student_PNG124-2660387102.png" id="2_8muje"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gmwdw"]
-radius = 0.32714844
+radius = 1.0117188
+height = 2.9291992
 
 [node name="practice_target" type="CharacterBody3D"]
 collision_layer = 4
 script = ExtResource("1_k1bei")
 
-[node name="model" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1004528, 0)
-mesh = SubResource("CapsuleMesh_k1bei")
-skeleton = NodePath("../..")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0993677, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5522486, 0)
 shape = SubResource("CapsuleShape3D_gmwdw")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 target_desired_distance = 10.0
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 1.4358926, 0)
+texture = ExtResource("2_8muje")
 
 [connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]

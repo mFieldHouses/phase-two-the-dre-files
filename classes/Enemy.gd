@@ -2,7 +2,7 @@ extends CharacterBody3D
 class_name Enemy
 
 @export var max_hp := 100
-@export var speed := 1
+@export var speed := 1.0
 var hp : int
 
 enum MovementState {IDLE, WAITING_TO_MOVE, MOVE}

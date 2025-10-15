@@ -120,6 +120,8 @@ func update_positron_beam() -> void: ##Updates the scale.z and position.z based 
 	var _length : float
 	if $Camera3D/PositronHitRay.is_colliding():
 		_length = ($Camera3D/PositronHitRay.get_collision_point() - global_position).length() #gewoon afstand tussen collision point en player
+		if $Camera3D/PositronHitRay.get_collider() is Enemy:
+			$Camera3D/PositronHitRay.get_collider().death()
 	else:
 		_length = 100.0
 	

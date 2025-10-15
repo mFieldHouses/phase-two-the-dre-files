@@ -1,26 +1,29 @@
 extends Enemy
 
-
+var death_animation := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	hp = max_hp
-	speed = 10
-	$model.mesh = $model.mesh.duplicate(true)
+	speed = 5
+	#$model.mesh = $model.mesh.duplicate(true)
 	
 func _physics_process(delta: float) -> void:
-	match movement_state:
-		MovementState.IDLE:
-			idle()
-		MovementState.WAITING_TO_MOVE:
-			wait_to_move(delta)
-		MovementState.MOVE:
-			move()
+	$Sprite3D.look_at(GlobalData.player_instance.global_position)
+	if death_animation == false:
+		match movement_state:
+			MovementState.IDLE:
+				idle()
+			MovementState.WAITING_TO_MOVE:
+				wait_to_move(delta)
+			MovementState.MOVE:
+				move()
 	velocity += get_gravity() * delta
 	move_and_slide()
 
 func idle():
 	velocity = Vector3.ZERO
+	idle_wait_time = randf_range(0, 0.5)
 	idle_timer_count = idle_wait_time
 	movement_state = MovementState.WAITING_TO_MOVE
 
@@ -32,8 +35,18 @@ func wait_to_move(delta):
 		movement_state = MovementState.MOVE
 	
 func get_new_target_location():
-	var offset_x = randf_range(0.5, 20) * (-1 if randf() < 0.5 else 1)
-	var offset_z = randf_range(0.5, 20) * (-1 if randf() < 0.5 else 1)
+	var offset_x = randf_range(5, 40) * (-1 if randf() < 0.5 else 1)
+	var offset_z = randf_range(5, 40) * (-1 if randf() < 0.5 else 1)
+	
+	if global_position.z + offset_z < -60:
+		offset_z = 10
+	if global_position.x + offset_x < 28:
+		offset_x = 10
+	if global_position.z + offset_z > -34:
+		offset_z = -10
+	if global_position.x + offset_x> 67:
+		offset_x = -10
+	speed = randf_range(1.0, 7.0)
 	return global_transform.origin + Vector3(offset_x, 0, offset_z)
 	
 func move():
@@ -45,3 +58,16 @@ func move():
 
 func _on_navigation_agent_3d_target_reached() -> void:
 	movement_state = MovementState.IDLE
+
+func death():
+	var tween = create_tween()
+	tween.tween_property($Sprite3D, "modulate", Color(1, 1, 1, 0), 1)
+	
+	
+	death_animation = true
+	velocity = -GlobalData.player_instance.camera.global_transform.basis.z * 10
+	$Sprite3D.scale = Vector3(0.3, 0.3, 0.3)
+	for number in range(100):
+		$Sprite3D.scale = Vector3(0.3, sin(float(number)/1.5)*0.3, 0.3)
+		await get_tree().create_timer(0.01).timeout
+	queue_free()

@@ -126,7 +126,7 @@ shape = SubResource("BoxShape3D_qcxwf")
 
 [node name="player" type="CharacterBody3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.832565, -0.88464487, -60.73024)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.114323, -1.2529244, -60.73024)
 collision_layer = 2
 script = ExtResource("1_ha2ph")
 
@@ -202,11 +202,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.107998, -1.7037811, -62.32
 mesh = SubResource("TorusMesh_ha2ph")
 
 [node name="Enemies" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.27272, 0, -72.42006)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.773727, 1.463512, -49.98744)
 
 [node name="Practice_target" parent="Enemies" instance=ExtResource("4_osw8o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.68154, -1.4032102, -66.54756)
-speed = 5
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.152626, 0.19718432, 2.3578148)
 
 [node name="RigidBody3D" parent="Enemies" instance=ExtResource("4_osw8o")]
 
