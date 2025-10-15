@@ -38,7 +38,7 @@ seamless = true
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e5sna"]
 render_priority = 0
 shader = ExtResource("3_e5sna")
-shader_parameter/cylinder_length = 2.0
+shader_parameter/cylinder_length = 9.17
 shader_parameter/noise_tex = SubResource("NoiseTexture2D_vjnli")
 shader_parameter/displacement_noise_tex = SubResource("NoiseTexture2D_oelfw")
 shader_parameter/rotation_speed = 1.0

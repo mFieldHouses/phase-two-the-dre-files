@@ -16,8 +16,8 @@ uniform float opacity = 1.0;
 void vertex() {
 	vertex_pos_y = VERTEX.y;
 	
-	VERTEX.x += texture(displacement_noise_tex, vec2(0.0, (vertex_pos_y * 0.007 - (TIME * 0.4)))).r * 0.5 - 0.25;
-	VERTEX.z += texture(displacement_noise_tex, vec2(0.0, (vertex_pos_y * 0.007 - (TIME * 0.43)))).r * 0.5 - 0.25;
+	VERTEX.x += texture(displacement_noise_tex, vec2(0.0, (vertex_pos_y * 0.003 - (TIME * 0.07)))).r * 0.5 - 0.25;
+	VERTEX.z += texture(displacement_noise_tex, vec2(0.0, (vertex_pos_y * 0.003 - (TIME * 0.073)))).r * 0.5 - 0.25;
 	// Called for every vertex the material is visible on.
 }
 
