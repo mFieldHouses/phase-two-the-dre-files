@@ -63,18 +63,14 @@ func death():
 	
 	var tween = create_tween()
 	tween.tween_property($Sprite3D, "modulate", Color(1, 1, 1, 0), 1)
-	
-	
 	death_animation = true
 	velocity = -GlobalData.player_instance.camera.global_transform.basis.z * 10
 	$Sprite3D.scale = Vector3(0.3, 0.3, 0.3)
 	for number in range(100):
 		$Sprite3D.scale = Vector3(0.3, sin(float(number)/1.5)*0.3, 0.3)
 		await get_tree().create_timer(0.01).timeout
-	var new_enemy = load("res://scenes/practice_target.tscn").instantiate()
-	new_enemy.position = position
-	get_parent().add_child(new_enemy)
-	var new_enemy2 = load("res://scenes/practice_target.tscn").instantiate()
-	new_enemy2.position = position
-	get_parent().add_child(new_enemy2)
+	#for number in range(2):
+		#var new_enemy = load("res://scenes/practice_target.tscn").instantiate()
+		#new_enemy.position = position
+		#get_parent().add_child(new_enemy)
 	queue_free()

@@ -1,0 +1,88 @@
+[gd_scene load_steps=12 format=3 uid="uid://ct4qiec3gm33j"]
+
+[ext_resource type="Script" uid="uid://6r753i0tdjv0" path="res://steveolensummoner.gd" id="1_fn1b1"]
+[ext_resource type="Texture2D" uid="uid://bifybmqxl183p" path="res://assets/textures/3a05ab407c02ecffa20b133da87b292e-1420504474.png" id="2_wfosm"]
+[ext_resource type="Texture2D" uid="uid://sajh2kl34lar" path="res://assets/textures/smoke.png" id="3_wfosm"]
+[ext_resource type="Texture2D" uid="uid://dw7ii221qxgu7" path="res://assets/textures/explosionparticle.png" id="4_vpfa1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vpfa1"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(0, 0, 0, 1)
+albedo_texture = ExtResource("3_wfosm")
+metallic_specular = 0.0
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_74fq6"]
+material = SubResource("StandardMaterial3D_vpfa1")
+size = Vector2(6, 6)
+
+[sub_resource type="Gradient" id="Gradient_2f26s"]
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_74fq6"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("4_vpfa1")
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_2f26s"]
+material = SubResource("StandardMaterial3D_74fq6")
+size = Vector2(5, 5)
+
+[sub_resource type="Gradient" id="Gradient_vpfa1"]
+offsets = PackedFloat32Array(0, 0.6834319, 1)
+colors = PackedColorArray(1, 1, 1, 0.54509807, 1, 1, 1, 0.44313726, 1, 1, 1, 0)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_vpfa1"]
+height = 19.764404
+radius = 21.404297
+
+[node name="Steveolensummoner" type="Node3D"]
+script = ExtResource("1_fn1b1")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+texture = ExtResource("2_wfosm")
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.7041347, 0)
+amount = 20
+lifetime = 2.0
+draw_order = 2
+mesh = SubResource("QuadMesh_74fq6")
+emission_shape = 3
+emission_box_extents = Vector3(5, 1, 5)
+direction = Vector3(0, 1, 0)
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 5.0
+color_ramp = SubResource("Gradient_2f26s")
+
+[node name="CPUParticles3D2" type="CPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.5379543, 0)
+emitting = false
+amount = 30
+one_shot = true
+explosiveness = 0.81
+mesh = SubResource("QuadMesh_2f26s")
+direction = Vector3(0, 1, 0)
+spread = 20.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 30.0
+linear_accel_min = -15.0
+linear_accel_max = -15.0
+split_scale = true
+scale_curve_x = null
+scale_curve_y = null
+scale_curve_z = null
+color_ramp = SubResource("Gradient_vpfa1")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.882202, 0)
+shape = SubResource("CylinderShape3D_vpfa1")
