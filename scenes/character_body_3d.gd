@@ -28,6 +28,9 @@ var shooting : bool = false
 @onready var camera : Camera3D = $Camera3D
 
 var camera_position := 0
+
+@onready var beam_mesh_material : ShaderMaterial = $Camera3D/PositronBeamMesh.get_active_material(0)
+
 func _ready():
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_CAPTURED)
 	GlobalData.player_instance = self
@@ -35,6 +38,7 @@ func _ready():
 
 func _physics_process(delta: float) -> void:
 	camera_time += delta
+	shoot_timeout -= delta
 	
 	# Add the gravity.
 	if not is_on_floor():
@@ -64,8 +68,6 @@ func _physics_process(delta: float) -> void:
 	
 	#Shooting ==========================================================
 	
-	$Camera3D/PositronBeamMesh.visible = shooting
-	$Camera3D/PositronHitParticles.emitting = shooting
 	if shooting:
 		update_positron_beam()
 	
@@ -99,11 +101,19 @@ func _input(event):
 			sprinting = false
 			tween_camera_fov(DEFAULT_FOV)
 	
-	elif event.is_action("shoot"):
+	if event.is_action("shoot_burst") and event.is_pressed() and shoot_timeout <= 0:
+		update_positron_beam()
+		shoot_positron_burst()
+	
+	elif event.is_action("shoot_ray"):
 		shooting = event.is_pressed()
 		if event.is_pressed():
+			$Camera3D/PositronBeamMesh.visible = true
+			$Camera3D/PositronHitParticles.emitting = true
 			tween_camera_fov(camera.fov + SHOOTING_RAY_FOV_DELTA)
 		else:
+			$Camera3D/PositronBeamMesh.visible = false
+			$Camera3D/PositronHitParticles.emitting = false
 			tween_camera_fov(camera.fov - SHOOTING_RAY_FOV_DELTA)
 
 func update_positron_beam() -> void: ##Updates the scale.z and position.z based on the collision point of PositronHitRay and updates the position of Camera3D/PositronHit
@@ -115,13 +125,35 @@ func update_positron_beam() -> void: ##Updates the scale.z and position.z based 
 	
 	$Camera3D/PositronBeamMesh.mesh.height = _length #we gaan er hier van uit dat de mesh een CylinderMesh is
 	$Camera3D/PositronBeamMesh.mesh.rings = ceil(_length) + 4
-	$Camera3D/PositronBeamMesh.get_active_material(0).set_shader_parameter("cylinder_length", _length)
+	beam_mesh_material.set_shader_parameter("cylinder_length", _length)
 	$Camera3D/PositronBeamMesh.position.z = _length / -2.0 #negatieve Z is naar voren
 	$Camera3D/PositronHitParticles.position.z = -_length #particles zijn relatief aan camera dus we hoeven alleen z coordinaat aan te passen
 	
 
+func shoot_positron_burst() -> void:
+	var set_beam_opacity = func x(opacity : float):
+		beam_mesh_material.set_shader_parameter("opacity", opacity)
+	
+	var _ray_opacity_tween = create_tween()
+	$Camera3D/PositronHitParticles.emitting = true
+	$Camera3D/PositronBeamMesh.visible = true
+	beam_mesh_material.set_shader_parameter("opacity", 1.0)
+	_ray_opacity_tween.tween_method(set_beam_opacity, 1.0, 0.0, 0.1)
+	shoot_timeout = 0.1
+	
+	await _ray_opacity_tween.finished
+	
+	$Camera3D/PositronHitParticles.emitting = false
+	$Camera3D/PositronBeamMesh.visible = false
+	beam_mesh_material.set_shader_parameter("opacity", 1.0)
+
+
+var _camera_fov_tween : Tween
 func tween_camera_fov(new_fov : float, tween_time : float = 0.3) -> void:
-	var _tween = create_tween()
-	_tween.set_trans(Tween.TRANS_CUBIC)
-	_tween.set_ease(Tween.EASE_OUT)
-	_tween.tween_property(camera, "fov", new_fov, tween_time)
+	if _camera_fov_tween:
+		_camera_fov_tween.kill()
+	_camera_fov_tween = create_tween()
+	_camera_fov_tween.set_parallel()
+	_camera_fov_tween.set_trans(Tween.TRANS_CUBIC)
+	_camera_fov_tween.set_ease(Tween.EASE_OUT)
+	_camera_fov_tween.tween_property(camera, "fov", new_fov, tween_time)

@@ -11,6 +11,7 @@ uniform sampler2D displacement_noise_tex;
 uniform float rotation_speed = 1.0;
 uniform float emission_speed = 1.0;
 uniform float stretch = 1.0;
+uniform float opacity = 1.0;
 
 void vertex() {
 	vertex_pos_y = VERTEX.y;
@@ -27,7 +28,7 @@ void fragment() {
 	blue_fac = clamp(pow(blue_fac, 7.0), 0.0, 1.0);
 	
 	ALBEDO = vec3(clamp(1.0 - pow(blue_fac * 20.0, 2), 0.0, 1.0), (1.0 - pow(blue_fac, 0.6)) * 2.0, 1.5);
-	ALPHA = (1.0 - blue_fac / 1.5);
+	ALPHA = (1.0 - blue_fac / 1.5) * opacity;
 	
 }
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://deh5bo4gy3xt8"]
+[gd_scene load_steps=26 format=3 uid="uid://deh5bo4gy3xt8"]
 
 [ext_resource type="Texture2D" uid="uid://b4lbp8gysjntr" path="res://steveolenski-2197064075.jpg" id="1_gf1bn"]
 [ext_resource type="Script" uid="uid://ba5jmmlk01dbe" path="res://scenes/character_body_3d.gd" id="1_ha2ph"]
@@ -44,6 +44,7 @@ shader_parameter/displacement_noise_tex = SubResource("NoiseTexture2D_oelfw")
 shader_parameter/rotation_speed = 1.0
 shader_parameter/emission_speed = 1.0
 shader_parameter/stretch = 1.0
+shader_parameter/opacity = 1.0
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_mryrf"]
 material = SubResource("ShaderMaterial_e5sna")
@@ -58,6 +59,7 @@ cap_bottom = false
 transparency = 1
 no_depth_test = true
 shading_mode = 0
+vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("3_mryrf")
 billboard_mode = 3
 billboard_keep_scale = true
@@ -71,8 +73,12 @@ size = Vector2(0.3, 0.3)
 orientation = 2
 
 [sub_resource type="Curve" id="Curve_s3p6v"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.10106383, 1), -2.9445782, -2.9445782, 0, 0, Vector2(1, 0), -0.31459183, 0.0, 0, 0]
-point_count = 3
+_data = [Vector2(0, 1), -2.9445782, -4.388554, 0, 0, Vector2(0.43085107, 0.18072283), -0.118434586, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_e5sna"]
+offsets = PackedFloat32Array(0.48214287, 0.9047619)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_osw8o"]
 
@@ -136,17 +142,17 @@ skeleton = NodePath("../..")
 
 [node name="PositronHitParticles" type="CPUParticles3D" parent="player/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6059373, 0)
-emitting = false
 amount = 500
 lifetime = 0.4
 mesh = SubResource("PlaneMesh_xfs1y")
 spread = 180.0
-initial_velocity_min = 10.0
-initial_velocity_max = 30.0
-linear_accel_min = -100.0
-linear_accel_max = -100.0
+gravity = Vector3(0, -50, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 15.0
 scale_amount_min = 0.0
+scale_amount_max = 2.0
 scale_amount_curve = SubResource("Curve_s3p6v")
+color_ramp = SubResource("Gradient_e5sna")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="player"]
 shape = SubResource("CapsuleShape3D_osw8o")
