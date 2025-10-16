@@ -1,0 +1,3 @@
+schieten knockback
+CameraShakeManager
+NPC laat platte sprite achter als "lijk" wanneer hij dood gaat
