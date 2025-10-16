@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 GlobalData="*res://autoloads/GlobalData.gd"
 ParticleEffectManager="*res://autoloads/ParticleEffectManager.gd"
 GlobalSettings="*res://autoloads/GlobalSettings.gd"
+PositionalCameraShakeManager="*res://autoloads/PositionalCameraShakeManager.gd"
 
 [filesystem]
 
