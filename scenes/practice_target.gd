@@ -9,7 +9,7 @@ func _ready() -> void:
 	#$model.mesh = $model.mesh.duplicate(true)
 	
 func _physics_process(delta: float) -> void:
-	$Sprite3D.look_at(GlobalData.player_instance.global_position)
+	#$Sprite3D.look_at(GlobalData.player_instance.global_position)
 	if death_animation == false:
 		match movement_state:
 			MovementState.IDLE:

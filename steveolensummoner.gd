@@ -24,7 +24,7 @@ func summon():
 		GlobalData.player_instance.shooting = false
 	
 	var new_child = load("res://scenes/practice_target.tscn").instantiate()
-	add_child(new_child)
+	get_parent().add_child(new_child)
 	new_child.global_position = global_position - Vector3(0, 1.6, 0)
 	var tween = create_tween()
 	tween.tween_property(new_child, "global_position", Vector3(global_position.x, global_position.y + 1.6, global_position.z), 1)

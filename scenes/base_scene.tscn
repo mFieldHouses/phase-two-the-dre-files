@@ -203,7 +203,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.107998, -1.7037811, -62.32
 mesh = SubResource("TorusMesh_ha2ph")
 
 [node name="Steveolensummoner" parent="." instance=ExtResource("8_vjnli")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 87.11908, -2.5660312, -84.99663)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 87.11908, -2.4866524, -84.99663)
 
 [node name="Enemies" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.71319, 2.4536753, -46.997738)

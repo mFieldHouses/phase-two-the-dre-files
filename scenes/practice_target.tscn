@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cm7cfedd4qe2x"]
 
 [ext_resource type="Script" uid="uid://5ydlxo2nf3n3" path="res://scenes/practice_target.gd" id="1_k1bei"]
-[ext_resource type="Texture2D" uid="uid://omscjxfeiecn" path="res://assets/textures/student_PNG124-2660387102.png" id="2_8muje"]
+[ext_resource type="Texture2D" uid="uid://j01w7fvnbqnb" path="res://assets/textures/signal-2025-10-16-1708232.png" id="2_8muje"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gmwdw"]
 radius = 1.0117188
@@ -19,7 +19,8 @@ shape = SubResource("CapsuleShape3D_gmwdw")
 target_desired_distance = 10.0
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 1.4358926, 0)
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 1.9617906, 0)
+billboard = 2
 texture = ExtResource("2_8muje")
 
 [connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
