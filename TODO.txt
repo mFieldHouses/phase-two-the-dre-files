@@ -1,3 +1,6 @@
 schieten knockback
 CameraShakeManager
 NPC laat platte sprite achter als "lijk" wanneer hij dood gaat
+van de Klundert
+Intract with npc's (talk)
+Food fight npc's
