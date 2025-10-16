@@ -40,7 +40,7 @@ colors = PackedColorArray(1, 1, 1, 0.54509807, 1, 1, 1, 0.44313726, 1, 1, 1, 0)
 albedo_texture = ExtResource("2_wfosm")
 metallic_specular = 0.0
 emission_enabled = true
-emission = Color(0.91227055, 4.7168137e-06, 6.738305e-07, 1)
+emission = Color(0.9471825, 0.0020741224, 0.0011356932, 1)
 emission_energy_multiplier = 16.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_r4dy2"]
@@ -106,3 +106,9 @@ collision_mask = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.882202, 0)
 shape = SubResource("CylinderShape3D_vpfa1")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(1, 0, 0, 1)
+light_energy = 16.0
+light_indirect_energy = 16.0
+omni_range = 18.217
