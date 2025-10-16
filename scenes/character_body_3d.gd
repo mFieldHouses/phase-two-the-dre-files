@@ -34,7 +34,7 @@ var camera_position := 0
 func _ready():
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_CAPTURED)
 	GlobalData.player_instance = self
-	#global_position = %Spawnpoint_player.global_position
+	global_position = %Spawnpoint_player.global_position
 
 func _physics_process(delta: float) -> void:
 	camera_time += delta
