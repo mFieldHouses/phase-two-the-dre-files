@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ct4qiec3gm33j"]
+[gd_scene load_steps=14 format=3 uid="uid://ct4qiec3gm33j"]
 
 [ext_resource type="Script" uid="uid://6r753i0tdjv0" path="res://steveolensummoner.gd" id="1_fn1b1"]
 [ext_resource type="Texture2D" uid="uid://bifybmqxl183p" path="res://assets/textures/3a05ab407c02ecffa20b133da87b292e-1420504474.png" id="2_wfosm"]
@@ -35,6 +35,17 @@ size = Vector2(5, 5)
 [sub_resource type="Gradient" id="Gradient_vpfa1"]
 offsets = PackedFloat32Array(0, 0.6834319, 1)
 colors = PackedColorArray(1, 1, 1, 0.54509807, 1, 1, 1, 0.44313726, 1, 1, 1, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2f26s"]
+albedo_texture = ExtResource("2_wfosm")
+metallic_specular = 0.0
+emission_enabled = true
+emission = Color(0.91227055, 4.7168137e-06, 6.738305e-07, 1)
+emission_energy_multiplier = 16.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_r4dy2"]
+material = SubResource("StandardMaterial3D_2f26s")
+size = Vector2(10, 10)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_vpfa1"]
 height = 19.764404
@@ -82,8 +93,12 @@ color_ramp = SubResource("Gradient_vpfa1")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+visible = false
 cast_shadow = 0
 texture = ExtResource("2_wfosm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_r4dy2")
 
 [node name="Area3D" type="Area3D" parent="."]
 collision_mask = 2
