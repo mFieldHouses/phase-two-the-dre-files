@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dw7ii221qxgu7" path="res://assets/textures/explosionparticle.png" id="4_vpfa1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vpfa1"]
-transparency = 1
+transparency = 4
 vertex_color_use_as_albedo = true
 albedo_color = Color(0, 0, 0, 1)
 albedo_texture = ExtResource("3_wfosm")
@@ -95,6 +95,7 @@ color_ramp = SubResource("Gradient_vpfa1")
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
 visible = false
 cast_shadow = 0
+alpha_cut = 3
 texture = ExtResource("2_wfosm")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

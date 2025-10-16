@@ -50,7 +50,6 @@ func _physics_process(delta: float) -> void:
 		jump_charge_timer += delta
 	
 	grip = float(is_on_floor()) * 0.8 + 0.2
-	print(sqrt(grip))
 	
 	# Add the gravity.
 	if not is_on_floor():
@@ -78,6 +77,7 @@ func _physics_process(delta: float) -> void:
 	#Shooting ==========================================================
 	
 	if shooting:
+		velocity += camera.global_basis.z * Vector3(1.0, 0.7, 1.0)
 		update_positron_beam()
 	
 	#Camera ================================================================
@@ -113,7 +113,7 @@ func _input(event):
 	if event.is_action("shoot_burst") and event.is_pressed() and shoot_timeout <= 0:
 		update_positron_beam()
 		shoot_positron_burst()
-		velocity += camera.global_basis.z * 10
+		#velocity += camera.global_basis.z * 7 * Vector3(1.0, 0.7, 1.0)
 	
 	elif event.is_action("shoot_ray"):
 		shooting = event.is_pressed()
