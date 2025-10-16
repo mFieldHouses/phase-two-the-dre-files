@@ -25,6 +25,13 @@ var previous_camera_rotation_y : float = 0
 
 var shoot_timeout : float = 0
 var shooting : bool = false
+var count_jump_charge : bool = false
+var jump_charge_timer : float = 0
+var max_jump_charge_time : float = 3.0
+var max_jump_charge_power : float = 10.0
+
+var grip : float = 1.0
+
 @onready var camera : Camera3D = $Camera3D
 
 var camera_position := 0
@@ -39,6 +46,11 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	camera_time += delta
 	shoot_timeout -= delta
+	if count_jump_charge:
+		jump_charge_timer += delta
+	
+	grip = float(is_on_floor()) * 0.8 + 0.2
+	print(sqrt(grip))
 	
 	# Add the gravity.
 	if not is_on_floor():
@@ -50,12 +62,9 @@ func _physics_process(delta: float) -> void:
 			velocity.y = JUMP_VELOCITY
 	var input_dir := Input.get_vector("left", "right", "forward", "backward")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = lerp(velocity.x, direction.x * SPEED + (direction.x * SPRINT_SPEED_DELTA * int(sprinting)), 0.3)
-		velocity.z = lerp(velocity.z, direction.z * SPEED + (direction.z * SPRINT_SPEED_DELTA * int(sprinting)), 0.3)
-	else:
-		velocity.x *= 0.8
-		velocity.z *= 0.8
+	
+	velocity.x = lerp(velocity.x, direction.x * SPEED + (direction.x * SPRINT_SPEED_DELTA * int(sprinting)), 0.3 * grip)
+	velocity.z = lerp(velocity.z, direction.z * SPEED + (direction.z * SPRINT_SPEED_DELTA * int(sprinting)), 0.3 * grip) 
 	
 	camera.rotation.x = lerp(previous_camera_rotation_x, desired_camera_rotation_x, 0.3)
 	rotation.y = lerp(previous_camera_rotation_y, desired_camera_rotation_y, 0.3)
@@ -104,6 +113,7 @@ func _input(event):
 	if event.is_action("shoot_burst") and event.is_pressed() and shoot_timeout <= 0:
 		update_positron_beam()
 		shoot_positron_burst()
+		velocity += camera.global_basis.z * 10
 	
 	elif event.is_action("shoot_ray"):
 		shooting = event.is_pressed()
