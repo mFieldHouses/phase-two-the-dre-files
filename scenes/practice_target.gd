@@ -61,6 +61,7 @@ func _on_navigation_agent_3d_target_reached() -> void:
 	movement_state = MovementState.IDLE
 
 func death():
+
 	if dying == false:
 		dying = true
 		var tween = create_tween()
@@ -71,8 +72,8 @@ func death():
 		for number in range(100):
 			$Sprite3D.scale = Vector3(0.3, sin(float(number)/1.5)*0.3, 0.3)
 			await get_tree().create_timer(0.01).timeout
-	#for number in range(2):
-		#var new_enemy = load("res://scenes/practice_target.tscn").instantiate()
-		#new_enemy.position = position
-		#get_parent().add_child(new_enemy)
+	for number in range(2):
+		var new_enemy = preload("res://scenes/practice_target.tscn").instantiate()
+		new_enemy.position = position
+		get_parent().add_child(new_enemy)
 		queue_free()
