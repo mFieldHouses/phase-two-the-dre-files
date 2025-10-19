@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cv2ktpvp7ba7v"]
+
+[ext_resource type="Script" uid="uid://domc1oncumryn" path="res://fish.gd" id="1_6hqat"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6hqat"]
+
+[node name="Node3D" type="RigidBody3D"]
+script = ExtResource("1_6hqat")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_6hqat")

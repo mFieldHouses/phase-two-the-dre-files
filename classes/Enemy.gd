@@ -8,7 +8,7 @@ var hp : int
 enum MovementState {IDLE, WAITING_TO_MOVE, MOVE}
 var movement_state : MovementState = MovementState.IDLE
 
-var idle_timer_count : float = 0.0
+var idle_timer_count : float = 1.0
 var idle_wait_time : float = 0.1
 
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D

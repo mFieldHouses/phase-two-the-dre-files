@@ -16,5 +16,5 @@ func get_intensity_at_point(position : Vector3) -> float:
 	return _intensity_sum
 
 func get_intensity_for_shake_point_at_point(_shake_point : CameraShakePoint, position : Vector3) -> float:
-	print(clamp((-_shake_point.intensity / _shake_point.radius - _shake_point.inner_radius) * ((_shake_point.global_position - position).length() - _shake_point.radius), 0.0, _shake_point.intensity))
+	#print(clamp((-_shake_point.intensity / _shake_point.radius - _shake_point.inner_radius) * ((_shake_point.global_position - position).length() - _shake_point.radius), 0.0, _shake_point.intensity))
 	return clamp((-_shake_point.intensity / _shake_point.radius - _shake_point.inner_radius) * ((_shake_point.global_position - position).length() - _shake_point.radius), 0.0, _shake_point.intensity)

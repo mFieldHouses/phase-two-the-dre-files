@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://cv2ktpvp7ba7v"]
+
+[ext_resource type="Script" uid="uid://domc1oncumryn" path="res://fish.gd" id="1_6hqat"]
+[ext_resource type="Texture2D" uid="uid://d1iyqdbu88bk5" path="res://assets/textures/fish/fish_brown_outline.png" id="2_e6oba"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_e6oba"]
+friction = 0.4
+bounce = 0.6
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_t2qru"]
+height = 0.1545639
+radius = 0.32666016
+
+[node name="Node3D" type="RigidBody3D"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+collision_layer = 4
+collision_mask = 7
+physics_material_override = SubResource("PhysicsMaterial_e6oba")
+script = ExtResource("1_6hqat")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.17961314, 0)
+texture = ExtResource("2_e6oba")
+
+[node name="Sprite3D2" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.086008, 0)
+texture = ExtResource("2_e6oba")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1531845, 0)
+shape = SubResource("CylinderShape3D_t2qru")

@@ -1,8 +1,9 @@
 extends Node3D
-
+@export var Summon_Timer : float
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	await get_tree().create_timer(Summon_Timer).timeout
 	summon()
 	#PositionalShakeManager.
 
@@ -34,5 +35,5 @@ func summon():
 	$CPUParticles3D.explosiveness = 0
 	$CPUParticles3D.one_shot = false
 	$CPUParticles3D.emitting = true
-	await get_tree().create_timer(4).timeout
+	await get_tree().create_timer(Summon_Timer).timeout
 	summon()

@@ -52,3 +52,4 @@ func shake_impact(start_intensity : float = 1.0, time : float = 1.0) -> void:
 	await _current_shake_impact_tween.finished
 	
 	toggle_camera_shake(false)
+	

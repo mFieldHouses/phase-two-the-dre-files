@@ -209,12 +209,22 @@ mesh = SubResource("TorusMesh_ha2ph")
 
 [node name="Steveolensummoner" parent="." instance=ExtResource("8_vjnli")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 87.11908, -2.4866524, -84.99663)
-Summon_Timer = 100.0
 
 [node name="Enemies" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.425293, 1.9436712, -34.79293)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.71319, 2.4536753, -46.997738)
+
+[node name="Practice_target" parent="Enemies" instance=ExtResource("4_osw8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.152626, 0.19718432, 2.3578148)
 
 [node name="RigidBody3D" parent="Enemies" instance=ExtResource("4_osw8o")]
+
+[node name="RigidBody3D2" parent="Enemies" instance=ExtResource("4_osw8o")]
+
+[node name="RigidBody3D3" parent="Enemies" instance=ExtResource("4_osw8o")]
+
+[node name="RigidBody3D4" parent="Enemies" instance=ExtResource("4_osw8o")]
+
+[node name="RigidBody3D5" parent="Enemies" instance=ExtResource("4_osw8o")]
 
 [node name="CameraShakePoint" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.46284, -0.9067087, -82.4154)
@@ -226,7 +236,6 @@ metadata/_custom_type_script = "uid://cf208ee2b35lj"
 [node name="throwables" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.464659, 2.7824404, -51.42425)
 script = ExtResource("11_sybwi")
-Spawning_Timer = 1.0
 
 [node name="Node3D" parent="throwables" instance=ExtResource("11_1stcl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.016254902, 0)
