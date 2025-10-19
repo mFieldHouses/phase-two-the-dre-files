@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://deh5bo4gy3xt8"]
+[gd_scene load_steps=33 format=3 uid="uid://deh5bo4gy3xt8"]
 
 [ext_resource type="Texture2D" uid="uid://b4lbp8gysjntr" path="res://steveolenski-2197064075.jpg" id="1_gf1bn"]
 [ext_resource type="Script" uid="uid://ba5jmmlk01dbe" path="res://scenes/character_body_3d.gd" id="1_ha2ph"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://c7q2884cr78hx" path="res://scenes/player_ui.gd" id="3_pmxr0"]
 [ext_resource type="PackedScene" uid="uid://cm7cfedd4qe2x" path="res://scenes/practice_target.tscn" id="4_osw8o"]
 [ext_resource type="PackedScene" uid="uid://ct4qiec3gm33j" path="res://scenes/steveolensummoner.tscn" id="8_vjnli"]
+[ext_resource type="Script" uid="uid://dvo4i1v5pwko2" path="res://scenes/enemies.gd" id="9_q36gs"]
 [ext_resource type="Script" uid="uid://cf208ee2b35lj" path="res://classes/CameraShakePoint.gd" id="10_yfdfb"]
 [ext_resource type="PackedScene" uid="uid://cv2ktpvp7ba7v" path="res://scenes/food on floor.tscn" id="11_1stcl"]
 [ext_resource type="Script" uid="uid://iy4r4gocixe0" path="res://scenes/throwables.gd" id="11_sybwi"]
@@ -212,9 +213,13 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 87.11908, -2.4866524, -
 Summon_Timer = 100.0
 
 [node name="Enemies" type="Node3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.425293, 1.9436712, -34.79293)
+script = ExtResource("9_q36gs")
 
-[node name="RigidBody3D" parent="Enemies" instance=ExtResource("4_osw8o")]
+[node name="CharacterBody3D3D" parent="Enemies" instance=ExtResource("4_osw8o")]
+
+[node name="practice_target" parent="Enemies" instance=ExtResource("4_osw8o")]
 
 [node name="CameraShakePoint" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.46284, -0.9067087, -82.4154)

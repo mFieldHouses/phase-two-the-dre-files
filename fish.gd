@@ -11,6 +11,10 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	pass
 
+func throw_fish(thrower, target_position):
+	global_position = thrower.global_position
+	linear_velocity = target_position * Vector3(2, 1, 2) + Vector3(0, 5, 0)
+
 
 func dir_contents(path):
 	var dir = DirAccess.open(path)
