@@ -3,6 +3,7 @@ extends Enemy
 var death_animation := false
 var dying := false
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var texture = preload("res://assets/textures/signal-2025-10-16-1708232.png")
@@ -47,19 +48,18 @@ func get_new_target_location():
 	var offset_z : float
 	var goal_x : float
 	var goal_z : float
-	if randf_range(0.0, 1.5) >= 1.0:
+	if randf_range(0.0, 1.0) > 0.5:
 		offset_x = randf_range(5, 20) * (-1 if randf() < 0.5 else 1)
 		offset_z = randf_range(5, 20) * (-1 if randf() < 0.5 else 1)
 		if global_position.z + offset_z < -55:
 			offset_z = 5
 		if global_position.x + offset_x < 25:
 			offset_x = 5
-		if global_position.z + offset_z > -32:
+		if global_position.z + offset_z > -35:
 			offset_z = -5
 		if global_position.x + offset_x > 63:
 			offset_x = -5
 		speed = randf_range(6.0, 7.0)
-		print(offset_x, offset_z)
 		return global_transform.origin + Vector3(offset_x, 0, offset_z)
 		
 	else:
@@ -68,8 +68,8 @@ func get_new_target_location():
 			distances_to_fishes.append(child.global_position - global_position)
 		goal_x = distances_to_fishes.pick_random().x + global_position.x
 		goal_z = distances_to_fishes.pick_random().z + global_position.z
-		print(distances_to_fishes)
-		print(goal_x, goal_z)
+		#print(distances_to_fishes)
+		#print(goal_x, goal_z)
 		return Vector3(goal_x, 0, goal_z)
 
 func sort_ascending(a, b):
@@ -87,12 +87,11 @@ func move():
 func _on_navigation_agent_3d_target_reached() -> void:
 	var found_fish := false
 	var all_target_positions : Array[Vector3]
-	print("reached!")
 	var check_if_fish_in_range : Vector3
 	for child in GlobalData.throwables.get_children_of_type("RigidBody3D"):
 		check_if_fish_in_range = child.global_position - global_position
 		if abs(check_if_fish_in_range.length()) < 2:
-			for NPC in %Enemies.get_children_of_type("CharacterBody3D"):
+			for NPC in GlobalData.Enemies.get_children_of_type("CharacterBody3D"):
 				all_target_positions.append(NPC.global_position - global_position)
 			all_target_positions.erase(Vector3.ZERO)
 			child.throw_fish(self, all_target_positions.pick_random())

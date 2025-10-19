@@ -20,7 +20,7 @@ var shoot_timeout : float = 0
 var shooting : bool = false
 
 var grip : float = 1.0
-
+var timer = Timer.new()
 @onready var camera : Camera3D = $Camera3D
 
 var camera_position := 0
@@ -28,10 +28,16 @@ var camera_position := 0
 @onready var beam_mesh_material : ShaderMaterial = $Camera3D/PositronBeamMesh.get_active_material(0)
 
 func _ready():
+	add_child(timer)
+	timer.timeout.connect(print_position)
+	timer.start(1)
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_CAPTURED)
 	GlobalData.player_instance = self
 	global_position = %Spawnpoint_player.global_position
 
+func print_position():
+	print(position)
+	timer.start(1)
 func _physics_process(delta: float) -> void:
 	shoot_timeout -= delta
 	
